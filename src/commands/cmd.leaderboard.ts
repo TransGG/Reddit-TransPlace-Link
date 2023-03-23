@@ -5,7 +5,7 @@ export default new ResponsiveSlashCommandBuilder()
   .setName('leaderboard')
   .setDescription('View the Server Leaderboard.')
   .setDefaultPermission(true)
-  .setResponse(async (interaction, interactionHandler, _command) => {
+  .setResponse(async (interaction, _interactionHandler, _command) => {
     if (!interaction.isApplicationCommand()) return;
     await interaction.deferReply({ ephemeral: true });
 

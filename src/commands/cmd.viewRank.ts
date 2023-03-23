@@ -7,7 +7,7 @@ import TEMPLATES from '@resources/commandTemplates';
 export default new ResponsiveContentMenuCommandBuilder()
   .setType(ApplicationCommandType.Message)
   .setName('View Rank')
-  .setResponse(async (interaction, interactionHandler, _command) => {
+  .setResponse(async (interaction, _interactionHandler, _command) => {
     if (!interaction.isMessageContextMenu()) return;
     await interaction.deferReply({ ephemeral: true });
 

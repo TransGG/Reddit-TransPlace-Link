@@ -11,7 +11,7 @@ export default new ResponsiveSlashCommandBuilder()
       .setRequired(false),
   )
   .setDefaultPermission(true)
-  .setResponse(async (interaction, interactionHandler, _command) => {
+  .setResponse(async (interaction, _interactionHandler, _command) => {
     if (!interaction.isApplicationCommand()) return;
     await interaction.deferReply({ ephemeral: true });
 
