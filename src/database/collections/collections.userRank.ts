@@ -49,6 +49,16 @@ export default class UserRank {
     return LEADERBOARD;
   }
 
+  public static async importDatabase(data: Document[]) {
+    const PREVIOUS_DATABASE = await DATABASE_COLLECTION.find({}).toArray();
+    await DATABASE_COLLECTION.deleteMany({});
+    await DATABASE_COLLECTION.insertMany(data);
+    return {
+      new: await DATABASE_COLLECTION.find({}).toArray(),
+      old: PREVIOUS_DATABASE,
+    }
+  }
+
   /**
    * Add the user to the database if they haven't been added before
    *
