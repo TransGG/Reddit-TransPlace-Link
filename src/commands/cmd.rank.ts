@@ -1,5 +1,5 @@
 import { ResponsiveSlashCommandBuilder } from '@interactionHandling/commandBuilders.js';
-import TEMPLATES from '@resources/commandTemplates';
+import TEMPLATES from '@resources/commandTemplates.js';
 
 export default new ResponsiveSlashCommandBuilder()
   .setName('rank')
@@ -13,7 +13,6 @@ export default new ResponsiveSlashCommandBuilder()
   .setDefaultPermission(true)
   .setResponse(async (interaction, _interactionHandler, _command) => {
     if (!interaction.isApplicationCommand()) return;
-    await interaction.deferReply({ ephemeral: true });
 
     const TargetUser = interaction.options.getUser('user') || interaction.user;
     if (!TargetUser) return interaction.reply({

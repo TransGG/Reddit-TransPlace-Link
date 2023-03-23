@@ -15,7 +15,10 @@ export default async function rank(options: Options) {
 
   const { EXP: { EXP_BAR_SIZE } } = await getCustomisations();
 
-  const progressBar = "[" + "=".repeat(Math.floor(progress / 100 * EXP_BAR_SIZE)) + ">".repeat(progress % (100 / EXP_BAR_SIZE) == 0 ? 0 : 1) + " ".repeat(Math.floor((100 - progress) / 100 * EXP_BAR_SIZE)) + "]";
+  const filledChars = Math.round(EXP_BAR_SIZE * (progress / 100));
+  const emptyChars = EXP_BAR_SIZE - filledChars;
+  const progressBar = "[" + "■".repeat(filledChars) + " ".repeat(emptyChars) + "]";
+  
   const serverRank = await COLLECTIONS.UserRank.getServerRank(options.user.id);
 
   const EMBED = new MessageEmbed()
@@ -23,9 +26,9 @@ export default async function rank(options: Options) {
     .setTitle(`${options.user.tag}'s Rank`)
     .setThumbnail(options.user.displayAvatarURL({ dynamic: true }))
     .addFields(
-      { name: 'Server Rank', value: `${serverRank}`, inline: true },
+      { name: 'Server Rank', value: `#${serverRank}`, inline: true },
       { name: 'Level', value: `${options.level}`, inline: true },
-      { name: 'EXP', value: `${options.xp} / ${options.levelEnd}\n${progressBar} (${progress}%)`, inline: true },
+      { name: 'EXP', value: `${options.xp} / ${options.levelEnd} (${progress}%)\n\`${progressBar}\``, inline: false },
     )
     .setTimestamp();
 

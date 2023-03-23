@@ -1,6 +1,6 @@
 // imports
 import type { Client, Message} from 'discord.js';
-import EXP from '@resources/experence.js';
+import EXP from '@resources/experience.js';
 
 export default class MessageHandler {
   public readonly client: Client;
@@ -16,6 +16,8 @@ export default class MessageHandler {
   }
 
   public async respond(message: Message) {
+
+    if (message.author.bot) return;
 
     EXP.handleEXP(message.author);
     if(message.member) EXP.verifyRoles(message.member);

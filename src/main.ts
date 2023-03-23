@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import { oneLineTrim } from 'common-tags';
 import { Client, Intents } from 'discord.js';
 import InteractionHandler from './interactionHandling/interactionHandler.js';
-import MessageHandler from './interactionHandling/messageHandler';
+import MessageHandler from './interactionHandling/messageHandler.js';
 import { getCommands, getCoreConf, getAdvancedConf, getSnowflakeMap, watchAndReloadCommands } from './utils.js';
 
 const CORE_CONF = await getCoreConf();

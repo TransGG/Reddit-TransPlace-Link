@@ -4,7 +4,7 @@ import type { ObjectId } from 'mongodb';
 import DATABASE from '../database.js';
 import { getCustomisations } from '@utils.js';
 
-const DATABASE_COLLECTION = DATABASE.collection('user-logs');
+const DATABASE_COLLECTION = DATABASE.collection('user-rank');
 
 export default class UserRank {
   public readonly _id?: ObjectId;
@@ -39,7 +39,7 @@ export default class UserRank {
 
   public static async getServerRank(userID: Snowflake) {
     const USER_RANK = await this.getUser(userID);
-    const SERVER_RANK = await DATABASE_COLLECTION.find({ xp: { $gt: USER_RANK.xp } }).count();
+    const SERVER_RANK = await DATABASE_COLLECTION.countDocuments({ xp: { $gt: USER_RANK.xp } });
     return SERVER_RANK + 1;
   }
 

@@ -1,5 +1,5 @@
 import type { User } from 'discord.js';
-import EXP from '@resources/experence.js';
+import EXP from '@resources/experience.js';
 import COLLECTIONS from '@database/collections.js';
 import { getCustomisations } from '@utils.js';
 
