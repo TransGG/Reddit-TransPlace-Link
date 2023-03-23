@@ -29,4 +29,5 @@ export default new ResponsiveContentMenuCommandBuilder()
       embeds: [await TEMPLATES.getUserRank(GUILD_MEMBER.user)],
       ephemeral: true,
     });
+
   });

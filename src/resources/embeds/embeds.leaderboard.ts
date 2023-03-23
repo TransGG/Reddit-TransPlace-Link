@@ -1,6 +1,6 @@
 import { MessageEmbed, Guild } from 'discord.js';
 
-export default async function leaderboard(guild: Guild, leaderboard: Array<{userID: number, xp: number}>) {
+export default async function leaderboard(guild: Guild, leaderboard: Array<{userID: number, xp: number}>, page: number, userId?: string) {
   const EMBED = new MessageEmbed()
     .setColor('#0099ff')
     .setAuthor({
@@ -17,8 +17,11 @@ export default async function leaderboard(guild: Guild, leaderboard: Array<{user
         levelEnd = 20 * (level ** 2) + 35;
       }
 
-      return `#${index + 1} ➡️ <@${user.userID}>\n\tLevel \`${level}\`\n\t\`${user.xp}/${levelEnd}\`\n`
+      return `#${((page - 1 ) * 10) + index + 1} ➡️ <@${user.userID}>\n\tLevel \`${level}\`\n\t\`${user.xp}/${levelEnd}\`\n${userId == user.userID.toString() ? "❗ __***You are here***__ ❗\n" : ""}`
     }).join('\n'))
+    .setFooter({
+        text: `Page ${page}`,
+    })
     .setTimestamp()
 
   return EMBED;

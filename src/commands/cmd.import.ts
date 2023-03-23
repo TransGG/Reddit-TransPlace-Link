@@ -35,13 +35,13 @@ export default new ResponsiveSlashCommandBuilder()
           if (
             !Array.isArray(jsonData) ||
             jsonData.length === 0 ||
-            !jsonData.every((obj: any) => obj.id && obj.xp)
+            !jsonData.every((obj: any) => obj.userID && obj.xp)
           ) {
             return interaction.reply({
               content: 'Invalid Database. Please provide a valid JSON file.',
               ephemeral: true,
             });
-          }          
+          }
 
           const update = await COLLECTIONS.UserRank.importDatabase(jsonData);
 

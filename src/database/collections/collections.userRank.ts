@@ -49,6 +49,19 @@ export default class UserRank {
     return LEADERBOARD;
   }
 
+  public static async getMaxLeaderboardPages() {
+    const { Leaderboard_Items_Per_Page } = await getCustomisations();
+    const LEADERBOARD = await DATABASE_COLLECTION.find({}).toArray();
+    return Math.ceil(LEADERBOARD.length / Leaderboard_Items_Per_Page);
+  }
+
+  public static async findPageByUserId(userID: Snowflake) {
+    const { Leaderboard_Items_Per_Page } = await getCustomisations();
+    const LEADERBOARD = await DATABASE_COLLECTION.find({}).sort({ xp: -1 }).toArray();
+    const USER_INDEX = _.findIndex(LEADERBOARD, { userID });
+    return USER_INDEX === -1 ? null : Math.ceil((USER_INDEX + 1) / Leaderboard_Items_Per_Page);
+  }
+
   public static async importDatabase(data: Document[]) {
     const PREVIOUS_DATABASE = await DATABASE_COLLECTION.find({}).toArray();
     await DATABASE_COLLECTION.deleteMany({});

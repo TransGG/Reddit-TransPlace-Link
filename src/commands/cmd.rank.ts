@@ -20,6 +20,11 @@ export default new ResponsiveSlashCommandBuilder()
       ephemeral: true,
     });
 
+    if(TargetUser.bot) return interaction.reply({
+      content: 'You cannot view the rank of a bot.',
+      ephemeral: true,
+    });
+
     return await interaction.reply({
       embeds: [await TEMPLATES.getUserRank(TargetUser)],
     });

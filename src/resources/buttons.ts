@@ -1,9 +1,16 @@
 import path from 'node:path';
 import chokidar from 'chokidar';
 import { getDirectoryFromFileURL, getModulesInFolder } from '@utils.js';
+import previous from './buttons/buttons.previous.js';
+import next from './buttons/buttons.next.js';
+import search from './buttons/buttons.search.js';
+import pins from './buttons/buttons.pins.js';
 
 const BUTTONS = {
-  // TODO: next, prev pages button
+  previous,
+  next,
+  search,
+  pins
 };
 
 // TODO: a more centralised way to reload?
