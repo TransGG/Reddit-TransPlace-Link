@@ -4,6 +4,7 @@ import { oneLineTrim } from 'common-tags';
 import { Client, Intents } from 'discord.js';
 import InteractionHandler from './interactionHandling/interactionHandler.js';
 import MessageHandler from './interactionHandling/messageHandler.js';
+import voiceStateUpdate from './interactionHandling/voiceStateUpdate.js';
 import { getCommands, getCoreConf, getAdvancedConf, getSnowflakeMap, watchAndReloadCommands } from './utils.js';
 
 const CORE_CONF = await getCoreConf();
@@ -14,7 +15,8 @@ const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_MESSAGES
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_VOICE_STATES,
   ]
 }).once('ready', () => console.log(chalk.greenBright('Logged in'))) as
   Client & { readonly interactionHandler: InteractionHandler };
@@ -29,6 +31,11 @@ Reflect.set(client, 'interactionHandler', new InteractionHandler(
 
 // message handling
 Reflect.set(client, 'messageHandler', new MessageHandler(
+  client,
+));
+
+// Voice channel handling
+Reflect.set(client, 'voiceStateUpdate', new voiceStateUpdate(
   client,
 ));
 

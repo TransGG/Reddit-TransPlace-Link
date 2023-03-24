@@ -1,16 +1,18 @@
 import path from 'node:path';
 import chokidar from 'chokidar';
 import { getDirectoryFromFileURL, getModulesInFolder } from '@utils.js';
-import checkSet from './experience/checkSet.js';
-import handleEXP from './experience/handleEXP.js';
+import messageCooldown from './experience/messageCooldown.js';
 import getUserStats from './experience/getUserStats.js';
 import verifyRoles from './experience/verifyRoles.js';
+import handleVoiceEXP from './experience/handleVoiceEXP.js';
+import handleMessageEXP from './experience/handleMessageEXP.js';
 
 const EXP = {
-    checkSet,
-    handleEXP,
+    messageCooldown,
     getUserStats,
     verifyRoles,
+    handleMessageEXP,
+    handleVoiceEXP,
 };
 
 // TODO: a more centralised way to reload?

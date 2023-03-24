@@ -3,16 +3,15 @@ import EXP from '@resources/experience.js';
 import COLLECTIONS from '@database/collections.js';
 import { getCustomisations } from '@utils.js';
 
-
-export default async function handleEXP(user: User) {
+export default async function handleMessageEXP(user: User) {
 
     const Customisations = await getCustomisations();
-    const { EXP: { EXP_GAIN } } = Customisations;
+    const { MESSAGE: { MESSAGE_EXP_GAIN } } = Customisations;
 
-    const isInCooldown = await EXP.checkSet(user);
+    const isInCooldown = await EXP.messageCooldown(user);
     if (isInCooldown) return;
 
-    const randomEXP = EXP_GAIN[Math.floor(Math.random() * EXP_GAIN.length)] || 1;
+    const randomEXP = MESSAGE_EXP_GAIN[Math.floor(Math.random() * MESSAGE_EXP_GAIN.length)] || 1;
 
     await COLLECTIONS.UserRank.addXp(user.id, randomEXP);
     

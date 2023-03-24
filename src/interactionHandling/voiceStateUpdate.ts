@@ -1,7 +1,8 @@
 // imports
-import type { Client, Message} from 'discord.js';
+import type { Client, VoiceState} from 'discord.js';
 import EXP from '@resources/experience.js';
 import { getCustomisations } from '@utils.js';
+
 export default class MessageHandler {
   public readonly client: Client;
 
@@ -12,18 +13,17 @@ export default class MessageHandler {
    */
   public constructor(client: Client) {
     this.client = client
-      .on('messageCreate', async i => await this.respond(i));
+      .on('voiceStateUpdate', async i => await this.respond(i));
   }
 
-  public async respond(message: Message) {
-
-    if (message.author.bot) return;
+  public async respond(state: VoiceState) {
 
     const Customisations = await getCustomisations();
-    const { MESSAGE: { MESSAGE_EXP } } = Customisations;
+    const { VOICE: { VOICE_EXP } } = Customisations;
 
-    if(MESSAGE_EXP) EXP.handleMessageEXP(message.author);
-    if(message.member) EXP.verifyRoles(message.member);
+    if(!state.member) return;
+    if(state.member?.user.bot) return;
+    if(!state.channelId && VOICE_EXP) EXP.handleVoiceEXP(state);
     
   }
 }

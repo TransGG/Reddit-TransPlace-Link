@@ -13,7 +13,7 @@ type Options = {
 export default async function rank(options: Options) {
   const progress = Math.floor(((options.xp - options.levelStart) / (options.levelEnd - options.levelStart)) * 100);
 
-  const { EXP: { EXP_BAR_SIZE } } = await getCustomisations();
+  const { EXP_BAR_SIZE } = await getCustomisations();
 
   const filledChars = Math.round(EXP_BAR_SIZE * (progress / 100));
   const emptyChars = EXP_BAR_SIZE - filledChars;
