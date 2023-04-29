@@ -1,10 +1,10 @@
 import path from 'node:path';
 import chokidar from 'chokidar';
 import { getDirectoryFromFileURL, getModulesInFolder } from '@utils.js';
-import search from './modals/modals.search.js';
+import username from './modals/modals.username.js';
 
 const MODALS = {
-  search
+  username
 };
 
 // TODO: a more centralised way to reload?

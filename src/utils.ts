@@ -11,8 +11,6 @@ import cleanImport from 'utils/cleanImport.js';
 
 import type advancedType from '../configs/advancedType';
 import type coreType from '../configs/coreType';
-import type customisationsType from '../configs/customisationsType';
-import type levelsType from '../configs/levelsType';
 import type snowflakeMapType from '../configs/snowflakeMapType';
 
 /**
@@ -48,9 +46,7 @@ const SRC_PATH = dirname(fileURLToPath(import.meta.url));
 const COMMANDS_DIRECTORY = path.join(SRC_PATH, 'commands');
 const CONFIGS = Object.freeze({
   CORE: getConfigPath('core', 'ts'),
-  CUSTOMISATIONS: getConfigPath('customisations', 'ts'),
   ADVANCED: getConfigPath('advanced', 'ts'),
-  LEVELS: getConfigPath('levels', 'ts'),
   SNOWFLAKE_MAP: getConfigPath('snowflakeMap', 'ts'),
 });
 
@@ -60,14 +56,8 @@ export async function getCommands() {
 export async function getCoreConf(): Promise<coreType> {
   return (await cleanImport(CONFIGS.CORE)).default;
 }
-export async function getCustomisations(): Promise<customisationsType> {
-  return (await cleanImport(CONFIGS.CUSTOMISATIONS)).default;
-}
 export async function getAdvancedConf(): Promise<advancedType> {
   return (await cleanImport(CONFIGS.ADVANCED)).default;
-}
-export async function getLevels(): Promise<levelsType> {
-  return (await cleanImport(CONFIGS.LEVELS)).default;
 }
 export async function getSnowflakeMap(): Promise<snowflakeMapType> {
   return (await cleanImport(CONFIGS.SNOWFLAKE_MAP)).default;

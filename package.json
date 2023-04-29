@@ -42,6 +42,7 @@
     "discord.js": "13.14.0",
     "lodash": "^4.17.21",
     "mongodb": "^4.5.0",
+    "snoowrap": "^1.23.0",
     "supports-color": "^9.2.3"
   }
 }

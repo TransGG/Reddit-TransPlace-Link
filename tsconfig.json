@@ -12,6 +12,7 @@
       "@interactionHandling/*": ["interactionHandling/*"],
       "@resources/*": ["resources/*"],
       "@utils.js": ["utils.js"]
-    }
+    },
+    "ignoreDeprecations": "5.0"
   }
 }

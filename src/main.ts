@@ -3,9 +3,10 @@ import chalk from 'chalk';
 import { oneLineTrim } from 'common-tags';
 import { Client, Intents } from 'discord.js';
 import InteractionHandler from './interactionHandling/interactionHandler.js';
-import MessageHandler from './interactionHandling/messageHandler.js';
-import voiceStateUpdate from './interactionHandling/voiceStateUpdate.js';
 import { getCommands, getCoreConf, getAdvancedConf, getSnowflakeMap, watchAndReloadCommands } from './utils.js';
+import roleUpdateHandler from './interactionHandling/roleUpdateHandler.js';
+import userLeaveHandler from './interactionHandling/userLeaveHandler.js';
+import userBanHandler from './interactionHandling/userBanHandler.js';
 
 const CORE_CONF = await getCoreConf();
 const SNOWFLAKE_MAP = await getSnowflakeMap();
@@ -29,13 +30,15 @@ Reflect.set(client, 'interactionHandler', new InteractionHandler(
   SNOWFLAKE_MAP.Discord_Guilds ?? undefined
 ));
 
-// message handling
-Reflect.set(client, 'messageHandler', new MessageHandler(
+Reflect.set(client, 'guildMemberUpdate', new roleUpdateHandler(
   client,
 ));
 
-// Voice channel handling
-Reflect.set(client, 'voiceStateUpdate', new voiceStateUpdate(
+Reflect.set(client, 'guildMemberRemove', new userLeaveHandler(
+  client,
+));
+
+Reflect.set(client, 'guildBanAdd', new userBanHandler(
   client,
 ));
 

@@ -1,7 +1,7 @@
-import UserRank from './collections/collections.userRank.js';
+import Connections from './collections/collections.connections.js';
 
 const COLLECTIONS = {
-  UserRank,
+  Connections,
 };
 
 // TODO: insert chokidar hot reload shenanigans here
