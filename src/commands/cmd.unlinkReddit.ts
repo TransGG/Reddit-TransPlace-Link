@@ -52,6 +52,6 @@ export default new ResponsiveSlashCommandBuilder()
     const LOG_CHANNEL = _interactionHandler.client.channels.cache.get(SNOWFLAKE_MAP.Log_Channel); 
 
     if(!LOG_CHANNEL || !LOG_CHANNEL.isText()) return;
-    LOG_CHANNEL?.send(`Event: \`Reddit Unlink\`\nRemoved user from Reddit: u/${USER_CONNECTIONS.reddit}, Discord: ${USER_CONNECTIONS.discord}\n> Action Taken By: ${interaction.user.tag} | ${interaction.user.id}`)
+    LOG_CHANNEL?.send(`Event: \`Reddit Unlink\`\nRemoved user from Reddit: \`u/${USER_CONNECTIONS.reddit}\`, Discord: \`${USER_CONNECTIONS.discord}\`\n> Action Taken By: \`${interaction.user.tag}\` | \`${interaction.user.id}\``)
 
   });

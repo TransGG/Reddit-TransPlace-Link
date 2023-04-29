@@ -31,10 +31,10 @@ export default class MessageHandler {
       const LOG_CHANNEL = this.client.channels.cache.get(SNOWFLAKE_MAP.Log_Channel); 
       if(!LOG_CHANNEL || !LOG_CHANNEL.isText()) return;
       if (!removeUser) {
-          LOG_CHANNEL?.send(`Event: \`Role Update\`\nFailed to remove user from Reddit: u/${USER.reddit}, Discord: ${USER.discord}`)
+          LOG_CHANNEL?.send(`Event: \`Role Update\`\nFailed to remove user from Reddit: \`u/${USER.reddit}\`, Discord: \`${USER.discord}\``)
       }
       else {
-        LOG_CHANNEL?.send(`Event: \`Role Update\`\nRemoved user from Reddit: u/${USER.reddit}, Discord: ${USER.discord}`)
+        LOG_CHANNEL?.send(`Event: \`Role Update\`\nRemoved user from Reddit: \`u/${USER.reddit}\`, Discord: \`${USER.discord}\``)
       }
 
       // Send a message to the config's Log_Channel
