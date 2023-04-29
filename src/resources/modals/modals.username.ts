@@ -57,7 +57,7 @@ export default new ResponsiveModal()
                 const LOG_CHANNEL = _interactionHandler.client.channels.cache.get(SNOWFLAKE_MAP.Log_Channel); 
 
                 if(!LOG_CHANNEL || !LOG_CHANNEL.isText()) return;
-                LOG_CHANNEL?.send(`Event: \`Reddit Link\`Added user to Reddit: u/${USERNAME}, Discord: ${interaction.user.id}`)
+                LOG_CHANNEL?.send(`Event: \`Reddit Link\`\nAdded user to Reddit: u/${USERNAME}, Discord: ${interaction.user.id}`)
             }
         }
     }
