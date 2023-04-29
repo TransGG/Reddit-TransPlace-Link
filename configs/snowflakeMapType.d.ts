@@ -14,4 +14,9 @@ export default interface snowflakeMap {
    * Required role to link a Reddit account to a Discord account.
    */
   Verified: string;
+
+  /**
+   * Required channel to log all bot actions.
+   */
+   Log_Channel: string;
 }

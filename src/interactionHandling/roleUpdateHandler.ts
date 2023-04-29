@@ -28,9 +28,18 @@ export default class MessageHandler {
     // check if the user is no longer verified
     if (oldMember.roles.cache.has(SNOWFLAKE_MAP.Verified) && !newMember.roles.cache.has(SNOWFLAKE_MAP.Verified)) {
       const removeUser = await REDDIT.removeContributor(USER.reddit);
+      const LOG_CHANNEL = this.client.channels.cache.get(SNOWFLAKE_MAP.Log_Channel); 
+      if(!LOG_CHANNEL || !LOG_CHANNEL.isText()) return;
       if (!removeUser) {
-        console.log('Failed to remove user from Reddit')
+          LOG_CHANNEL?.send(`Event: \`Role Update\`Failed to remove user from Reddit: u/${USER.reddit}, Discord: ${USER.discord}`)
       }
+      else {
+        LOG_CHANNEL?.send(`Event: \`Role Update\`Removed user from Reddit: u/${USER.reddit}, Discord: ${USER.discord}`)
+      }
+
+      // Send a message to the config's Log_Channel
+      
+  
     }
 
   }
